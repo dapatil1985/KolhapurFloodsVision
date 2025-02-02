@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href={{url_for('static',filename='predictor.css')}}>
+    <title>Flood Severity Prediction</title>
+
+    <script>
+        function toggleFormElements() {
+            const bydate = document.getElementById('bydate');
+            const maxtemp = document.getElementById('maxtemp');
+            const humidity = document.getElementById('humidity');
+            const windspeed = document.getElementById('windspeed');
+            const rainfall = document.getElementById('rainfall');
+            const tendaysrainfall = document.getElementById('tendaysrainfall');
+            const choosedate = document.getElementById('choosedate');
+
+            if (bydate.checked) {
+                maxtemp.disabled = true;
+                humidity.disabled = true;
+                windspeed.disabled = true;
+                rainfall.disabled = true;
+                tendaysrainfall.disabled = true;
+                choosedate.disabled=false;
+                
+            } else {
+                maxtemp.disabled = false;
+                humidity.disabled = false;
+                windspeed.disabled = false;
+                rainfall.disabled = false;
+                tendaysrainfall.disabled = false;
+                choosedate.disabled=true;
+               
+            }
+        }
+    </script>
+
+</head>
+<body onload="toggleFormElements()">
+    <section id="prediction-form">
+        <form class="form" action="/predict", method="POST">
+            <h1 class="my-3 text-center">Predictor</h1>
+            <div class="row">
+              
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="bydate" style="margin-right: 5px;">By Date</label>
+                        <input type="radio" name="r1" value= "bydate" id="bydate" checked onclick="toggleFormElements()">
+                    </div>
+                </div>
+
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="byvalue" style="margin-right: 5px;">By Value</label>
+                        <input type="radio" name="r1" value= "byvalue" id="byvalue" onclick="toggleFormElements()">
+                    </div>
+                </div>
+                
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="choosedate" class="windgustspeed">Choose Date</label>
+                        <input class="form-control" type="date" name="choosedate" id="choosedate">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windgustspeed1" class="windgustspeed1"></label>
+                        <input type="hidden" class="form-control" id="windgustspeed1" name="windgustspeed1">
+                    </div>
+                </div>
+
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="maxtemp" class="maxtemp">Maximum Temperature</label>
+                        <input type="text" class="form-control" id="maxtemp" name="maxtemp">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="rainfall" class="rainfall">Humidity</label>
+                        <input type="text" class="form-control" id="humidity" name="humidity">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="evaporation" class="evaporation">Wind Speed</label>
+                        <input type="text" class="form-control" id="windspeed" name="windspeed">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="sunshine" class="sunshine">Rainfall</label>
+                        <input type="text" class="form-control" id="rainfall" name="rainfall">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windgustspeed" class="windgustspeed">10 days Cumulatative Rainfall</label>
+                        <input type="text" class="form-control" id="tendaysrainfall" name="tendaysrainfall">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windgustspeed" class="windgustspeed"></label>
+                        <input type="hidden" class="form-control" id="tendaysrainfall" name="windgustspeed">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2 d-flex align-items-end justify-content-around">
+                    <a href="/" style="margin-left: 70%;" class="btn btn-info button">Home</a>
+                    <button type="submit" style="margin-left: 10%;"class="btn btn-info button" >Predict</button>
+                </div>
+            </div>
+        </form>
+    </section>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+

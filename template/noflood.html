@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>No Flood</title>
+
+    <style>
+        @keyframes continuousZoom {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .continuous-zoom {
+            animation: continuousZoom 3s infinite;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #d4f3f860;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bolder;
+            color: blue;
+        }
+
+        /* Updated Banner Section */
+        .banner {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+        }
+
+        .banner .btn-container {
+            display: flex;
+        }
+
+        .banner .btn {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .banner .btn:hover {
+            background-color: #f39c12;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .weather-data, .image-section, .emergency-info {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .weather-data ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .weather-data li {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .weather-data .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        caption {
+            caption-side: top;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .sub-section {
+            font-size: 1rem;
+            margin-left: 20px;
+            padding-left: 10px;
+            border-left: 3px solid #ccc;
+            color: #555;
+        }
+
+        .district-disaster-authority, .people {
+            margin-bottom: 15px;
+        }
+
+        .district-disaster-authority {
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .people {
+            background-color: #eaffea;
+            border: 1px solid #b3ffb3;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Section with Buttons -->
+    <div class="banner">
+        Kolhapur Flood Vision
+        <div class="btn-container">
+            <a href="javascript:history.back()" class="btn">Back</a>
+            <a href="/" class="btn">Home</a>
+        </div>
+    </div>
+
+    <h1 class="continuous-zoom">No Flood</h1>
+
+    <div class="content">
+        <!-- Weather Data Section -->
+        <div class="weather-data">
+            <h2>Weather Data</h2>
+            <ul>
+                <li><span class="label">Date:</span> {{ weatherdata.cdate }}</li>
+                <li><span class="label">Max Temperature:</span> {{ weatherdata.maxtemp }} °C</li>
+                <li><span class="label">Humidity:</span> {{ weatherdata.humidity }} %</li>
+                <li><span class="label">Wind Speed:</span> {{ weatherdata.windspeed }} km/h</li>
+                <li><span class="label">Rainfall:</span> {{ weatherdata.rainfall }} mm</li>
+                <li><span class="label">10-Day Cumulative Rainfall:</span> {{ weatherdata.tendaysrainfall }} mm</li>
+            </ul>
+        </div>
+
+        <!-- Image Section -->
+        <div class="image-section">
+            <img src="../static/noflood.jpg" alt="Flood Image">
+        </div>
+    </div>
+
+    <!-- Emergency Contact Information -->
+    <div class="emergency-info">
+        <table>
+            <caption>Emergency Contact Information</caption>
+            <tr>
+                <th>Service</th>
+                <th>Contact No</th>
+            </tr>
+            <tr>
+                <td>National Disaster Management Authority, Government of India</td>
+                <td>011-1078</td>
+            </tr>
+            <tr>
+                <td>Maharashtra Control Room</td>
+                <td>022-22027990, Fax: 022-22026712</td>
+            </tr>
+            <tr>
+                <td>District Kolhapur, Maharashtra Control Room</td>
+                <td>0231-2659232</td>
+            </tr>
+        </table>
+
+        <div>
+            <h2 class="section-title">District Disaster Authority</h2>
+            <div class="sub-section district-disaster-authority">
+                <ul>
+                    <li>Monitor weather forecasts and stay prepared.</li>
+                    <li>Ensure drainage systems are clear and functional.</li>
+                    <li>Conduct public awareness campaigns on flood preparedness.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">People</h2>
+            <div class="sub-section people">
+                <ul >
+                    <li>Maintain and clean home drainage systems.</li>
+                    <li>Stay informed about weather conditions.</li>
+                    <li>Have basic emergency supplies ready.</li>
+                </ul>   
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Developed by Dr. K. M. Alaskar and Mr. D. A. Patil, Bharati Vidyapeeth (Deemed to be University) Institute of Management, Kolhapur
+    </footer>
+</body>
+</html>
